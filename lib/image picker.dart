@@ -1,13 +1,49 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
 
 class Imagepicker extends StatefulWidget {
-  const Imagepicker({super.key});
+  const Imagepicker({super.key, required this.title});
+
+  final String title;
 
   @override
   State<Imagepicker> createState() => _ImagepickerState();
 }
 
 class _ImagepickerState extends State<Imagepicker> {
+  File? image;
+
+  Future pickImage() async {
+    try {
+      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+
+      if(image == null) return;
+
+      final imageTemp = File(image.path);
+
+      setState(() => this.image = imageTemp);
+    } on PlatformException catch(e) {
+      print('Failed to pick image: $e');
+    }
+  }
+
+  Future pickImageC() async {
+    try {
+      final image = await ImagePicker().pickImage(source: ImageSource.camera);
+
+      if(image == null) return;
+
+      final imageTemp = File(image.path);
+
+      setState(() => this.image = imageTemp);
+    } on PlatformException catch(e) {
+      print('Failed to pick image: $e');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -49,12 +85,16 @@ class _ImagepickerState extends State<Imagepicker> {
                             mainAxisSize: MainAxisSize.min,
                             children: <Widget>[
                               ElevatedButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  pickImage();
+                                },
                                 child: Text('Gallery'),
                               ),
                               SizedBox(height: 10),
                               ElevatedButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  pickImageC();
+                                },
                                 child: Text('Camera'),
                               ),
                             ],
