@@ -27,7 +27,7 @@ class _MessagetoastState extends State<Messagetoast> {
                 Fluttertoast.showToast(
                   msg: 'HI USER',
                   toastLength: Toast.LENGTH_SHORT,
-                  gravity: ToastGravity.CENTER, 
+                  gravity: ToastGravity.BOTTOM_LEFT, 
                 );
               }, 
               child: Text('Login'),

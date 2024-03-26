@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class DisplayNumber extends StatefulWidget {
-  const DisplayNumber({super.key});
+class NumberIcons extends StatefulWidget {
+  const NumberIcons({super.key});
 
   @override
-  State<DisplayNumber> createState() => _DisplayNumberState();
+  State<NumberIcons> createState() => _NumberIconsState();
 }
 
-class _DisplayNumberState extends State<DisplayNumber> {
+class _NumberIconsState extends State<NumberIcons> {
   int count = 0;
   @override
   Widget build(BuildContext context) {
@@ -29,25 +29,14 @@ class _DisplayNumberState extends State<DisplayNumber> {
 
             SizedBox(height: 80,),
 
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(
-                  onPressed: _increment, 
-                  child:Text('Positive') 
-                ),
-
-                SizedBox(width: 40,),
-
-                ElevatedButton(
-                  onPressed: _decrement,
-                  child:Text('Negative') 
-                ),
-              ],
-            )
+             FloatingActionButton(
+                onPressed: _increment,
+                child: Icon(Icons.add),
+              ),
           ],
         ),
       ),
+      
     );
   }
 

@@ -93,7 +93,7 @@ class _ImagepickerState extends State<Imagepicker> {
                               SizedBox(height: 10),
                               ElevatedButton(
                                 onPressed: () {
-                                  pickImageC();
+                                  pickImageC ();
                                 },
                                 child: Text('Camera'),
                               ),

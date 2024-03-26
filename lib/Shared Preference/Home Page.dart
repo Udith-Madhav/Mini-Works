@@ -32,7 +32,16 @@ class _HomePageState extends State<HomePage> {
           //     ),
           //   ),
           // ),
-          Text(''),
+          FutureBuilder(
+            future: SharedPreferences.getInstance(), 
+            builder: (context, snapshot){
+              if(snapshot.connectionState == ConnectionState.waiting){
+                return CircularProgressIndicator();
+              }
+              String? email = snapshot.data!.getString('email');
+              return Text('$email');
+            } 
+          ),
 
           SizedBox(height: 40,),
 
